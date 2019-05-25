@@ -10,13 +10,13 @@ public class PizzaItem {
 
     private ArrayList<String> adds;
 
-    private String pizzaName = "";
-    private double pizzaPrice = 0;
+    private String pizzaName = "temp";
 
-    public PizzaItem(int pizzaNumber, String pizzaName, PizzaType pizzaType ) {
+    private double pizzaPrice = 0;
+    public PizzaItem(int pizzaNumber/*, String pizzaName/*, PizzaType pizzaType */) {
         this.pizzaNumber = pizzaNumber;
-        this.pizzaName = pizzaName;
-        this.pizzaType = pizzaType;
+        //this.pizzaName = pizzaName;
+       // this.pizzaType = pizzaType;
         adds = new ArrayList<String>();
     }
 
@@ -40,15 +40,19 @@ public class PizzaItem {
         this.pizzaPrice = pizzaPrice;
     }
 
-    public PizzaType getPizzaType() {
-        return pizzaType;
-    }
-
     public ArrayList getAdds() {
         return adds;
     }
 
     public void  setAdds(String addsq) {
         adds.add(addsq);
+    }
+
+    public PizzaType getPizzaType() {
+        return pizzaType;
+    }
+
+    public void setPizzaType(PizzaType pizzaType) {
+        this.pizzaType = pizzaType;
     }
 }

@@ -1,3 +1,5 @@
+package utility;
+
 import entity.PizzaItem;
 import enums.PizzaAdds;
 import enums.PizzaType;
@@ -10,19 +12,30 @@ public class OrderMaker {
 
     List<PizzaItem> visitorOrder;
     OrderService service = new OrderService();
+    PizzaItem pizzaItem;
 
     public OrderMaker() {
         visitorOrder = new ArrayList<PizzaItem>();
     }
 
     public void createPizza(){
-
-        PizzaItem pizzaItem = new PizzaItem(service.randOrderN(),"mk", PizzaType.CALZONE);
-        pizzaItem.setAdds(service.addAdd(1));
-        pizzaItem.setAdds(service.addAdd(2));
-        pizzaItem.setAdds(service.addAdd(3));
-
+        pizzaItem = new PizzaItem(service.randOrderN());
         visitorOrder.add(pizzaItem);
+    }
+
+    public void addPizzaBase(int addNum){
+        pizzaItem.setPizzaType(service.addBase(addNum));
+    }
+
+    public void addPizzaAdds(int addNum){
+        pizzaItem.setAdds(service.addAdd(addNum));
+    }
+
+    public void addPizzaName(String name){
+        if(name == "" || name == null){
+            name = "autoname";
+        }
+        pizzaItem.setPizzaName(name);
     }
 
     public void showOrder(){
@@ -37,13 +50,22 @@ public class OrderMaker {
 
                 ArrayList arrayList = item.getAdds();
                 for (Iterator<String> it = arrayList.iterator(); it.hasNext(); ) {
-                    String color = it.next();
-                    System.out.println(color);
+                    String add = it.next();
+                    System.out.println(add);
                 }
                     //System.out.println((PizzaAdds)adds.);
                 }
             }
-
         }
+
+        public void showNumberR(){
+
+            if(visitorOrder != null){
+                for(PizzaItem item : visitorOrder){
+                    System.out.println(item.getPizzaNumber());
+                    System.out.println("-----------");
+                    }
+                }
+            }
     }
 

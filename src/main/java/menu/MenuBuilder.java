@@ -10,16 +10,15 @@ import java.io.InputStreamReader;
 public class MenuBuilder {
 
     public MenuBuilder() {
-
     }
 
     //print main text
     public void mainManu(){
-        System.out.println("menu :> ");
+        System.out.println("Main menu :> ");
         System.out.println(" 1 :> Make pizza order ");
-        System.out.println(" 8 :> Exit ");
+        System.out.println(" 0 :> Exit ");
 
-        System.out.println("Enter position :> ");
+        System.out.println("Please select menu item :> ");
     }
 
     //print pizza base menu
@@ -36,7 +35,7 @@ public class MenuBuilder {
                 System.out.print("> " + pos + ": " + add + " " + add.getPrice() + "€" );
             }
         }
-        System.out.println("> 8: Exit ");
+        System.out.println("> 0: Exit ");
     }
 
     //print pizza adds menu
@@ -53,29 +52,29 @@ public class MenuBuilder {
                         System.out.print("> " + pos + ": " + add + " " + add.getPrice() + "€" );
                     }
                 }
-        System.out.print("> 9: Exit ");
+        System.out.print("> 0: Exit ");
     }
 
     //print price enter text
-    public void priceEnter(){
-        System.out.println("Enter money digit:");
+    public void numbersEnter(){
+        System.out.println("Enter pizza numbers (max-> 10):");
     }
 
     //check int input menu
-    /*public int menuTotalPriceEnter(){
-        int visitorPrice = 0;
+    public int pizzaNumbersEnter(){
+        int pizzaNum = 0;
 
         try {
-            while (visitorPrice <= 0 ){
-                System.out.println("How much money do you have (int limit digit) ? : ");
+            while (pizzaNum <= 0 || pizzaNum >=11 ){
+                System.out.println("Enter pizza numbers (max-> 10): ");
                 try {
                     BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
-                    visitorPrice = Integer.parseInt(inPrice.readLine());
+                    pizzaNum = Integer.parseInt(inPrice.readLine());
                 }catch (NumberFormatException c){}
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return visitorPrice;
-    }*/
+        return pizzaNum;
+    }
 }
