@@ -25,10 +25,12 @@ public class OrderMaker {
 
     public void addPizzaBase(int addNum){
         pizzaItem.setPizzaType(service.addBase(addNum));
+        pizzaItem.setPizzaPrice(service.getPriceBase(addNum));
     }
 
     public void addPizzaAdds(int addNum){
         pizzaItem.setAdds(service.addAdd(addNum));
+        pizzaItem.setPizzaPrice(service.getPriceAdd(addNum));
     }
 
     public void addPizzaName(String name){
@@ -46,7 +48,7 @@ public class OrderMaker {
                 System.out.println(item.getPizzaNumber());
                 System.out.println(item.getPizzaPrice());
                 System.out.println(item.getPizzaType());
-                System.out.println("-----------");
+                System.out.println("=======================");
 
                 ArrayList arrayList = item.getAdds();
                 for (Iterator<String> it = arrayList.iterator(); it.hasNext(); ) {

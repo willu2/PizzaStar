@@ -30,12 +30,24 @@ public class OrderService {
         return PizzaType.values()[baseNum - 1];
     }
 
+    public double getPriceBase(int baseNum){
+        PizzaType arr[] = PizzaType.values();
+
+        return PizzaType.values()[baseNum - 1].getPrice();
+    }
+
+    public double getPriceAdd (int addNum){
+        PizzaAdds arr[] = PizzaAdds.values();
+
+        return PizzaAdds.values()[addNum - 1].getPrice();
+    }
+
     public String addAdd(int addNum){
         PizzaAdds arr[] = PizzaAdds.values();
-        if(addNum > arr.length){
-            addNum = 1;
+        if(addNum <= 0 || addNum > arr.length){
+            System.out.println("wrong item");
         }
-        return String.valueOf(PizzaAdds.values()[addNum-1]);//
+        return String.valueOf(PizzaAdds.values()[addNum - 1]);//
 
     }
 

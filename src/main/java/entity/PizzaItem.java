@@ -37,7 +37,7 @@ public class PizzaItem {
     }
 
     public void setPizzaPrice(double pizzaPrice) {
-        this.pizzaPrice = pizzaPrice;
+        this.pizzaPrice += pizzaPrice;
     }
 
     public ArrayList getAdds() {

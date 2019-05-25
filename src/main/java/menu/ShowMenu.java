@@ -48,18 +48,21 @@ public class ShowMenu {
     public void selectBasePizza() /*throws IOException*/ {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         boolean notExit = true;
+        int item = 0;
 
         menu.baseShow();
         while(notExit) {
 
             try {
-                switch(Integer.parseInt(in.readLine())) {
+                switch(item = Integer.parseInt(in.readLine())) {
                     case 1:
-                        orderMaker.addPizzaBase(1);
+                        orderMaker.addPizzaBase(item);
+                        orderMaker.showOrder();
                         selectAddsPizza();
                         break;
                     case 2:
-                        orderMaker.addPizzaBase(2);
+                        orderMaker.addPizzaBase(item);
+                        orderMaker.showOrder();
                         selectAddsPizza();
                         break;
                     case 0: notExit = false; break;
@@ -75,20 +78,21 @@ public class ShowMenu {
      public void selectAddsPizza() /*throws IOException*/ {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         boolean notExit = true;
-
+        int item = 0;
         menu.addsShow();
         while(notExit) {
 
             try {
-                switch(Integer.parseInt(in.readLine())) {
-                    case 1:
-                        System.out.println("mnjn");/*selectAlbum();*/
+                switch(item = Integer.parseInt(in.readLine())) {
+                   /* case 1:
+                        System.out.println("mnjn");*//*selectAlbum();*//*
                         break;
-                    case 2: System.out.println("njjn");/*deleteAlbum()*/;
-                        break;
+                    case 2: System.out.println("njjn");*//*deleteAlbum()*//*;
+                        break;*/
                     case 0: notExit = false; break;
                     default:
-                        System.out.println("Try again...");
+                        orderMaker.addPizzaAdds(item);
+                        orderMaker.showOrder();
                 } // switch
             }catch (IOException e) {
                 e.printStackTrace();
