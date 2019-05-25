@@ -7,16 +7,13 @@ public class PizzaItem {
     private final int pizzaNumber;
 
     private PizzaType pizzaType;
-
     private ArrayList<String> adds;
-
     private String pizzaName = "temp";
 
     private double pizzaPrice = 0;
-    public PizzaItem(int pizzaNumber/*, String pizzaName/*, PizzaType pizzaType */) {
+
+    public PizzaItem(int pizzaNumber) {
         this.pizzaNumber = pizzaNumber;
-        //this.pizzaName = pizzaName;
-       // this.pizzaType = pizzaType;
         adds = new ArrayList<String>();
     }
 

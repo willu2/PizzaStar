@@ -1,13 +1,16 @@
 package utility;
 
+import entity.PizzaItem;
 import enums.PizzaAdds;
 import enums.PizzaType;
-import utility.PizzaNumberGenerator;
 
 public class OrderService {
 
+    private static int clientNumber = 50;
+
     private final int pizzaLimit = 10;
     private boolean base = true;
+
 
     PizzaNumberGenerator generator = PizzaNumberGenerator.getInstance();
 
@@ -15,19 +18,17 @@ public class OrderService {
             return generator.getPizzaNumber();
     }
 
-    public PizzaType addBase(int baseNum){
-        PizzaType arr[] = PizzaType.values();
-        if(baseNum <= 0 || baseNum > arr.length){
-            baseNum = 1;
-        }
+    public void addBase(PizzaItem item, int baseNum){
 
-        if(base){
-            base = !base;
-            return PizzaType.values()[baseNum - 1];
-        }else {
-            System.out.println("Base is added");
+        if (checkBaseLimit(baseNum)) {
+            if(base){
+                base = !base;
+                item.setPizzaType(PizzaType.values()[baseNum - 1]);
+                item.setPizzaPrice(PizzaType.values()[baseNum - 1].getPrice());
+            }else {
+                System.out.println("Base is added");
+            }
         }
-        return PizzaType.values()[baseNum - 1];
     }
 
     public double getPriceBase(int baseNum){
@@ -35,26 +36,72 @@ public class OrderService {
 
         return PizzaType.values()[baseNum - 1].getPrice();
     }
-
-    public double getPriceAdd (int addNum){
+/*
+    public double getPriceAdd (PizzaItem item, int addNum){
         PizzaAdds arr[] = PizzaAdds.values();
+        return PizzaAdds.values()[1].getPrice();
+    }
+*/
+    public void addAdd(PizzaItem item, int addNum){
 
-        return PizzaAdds.values()[addNum - 1].getPrice();
+            if (checkInpLimit(addNum) ) {
+                item.setAdds(String.valueOf(PizzaAdds.values()[addNum - 1]));
+                item.setPizzaPrice(PizzaAdds.values()[addNum - 1].getPrice());
+            }
     }
 
-    public String addAdd(int addNum){
+    public boolean checkInpLimit(int addNum){
         PizzaAdds arr[] = PizzaAdds.values();
-        if(addNum <= 0 || addNum > arr.length){
-            System.out.println("wrong item");
+        int itemNum = addNum;
+        int limit = arr.length;
+            if (itemNum > 0 && itemNum <= limit) {
+                return true;
+            }
+
+        return false;
+    }
+
+    public boolean checkBaseLimit(int addNum){
+        PizzaType arr[] = PizzaType.values();
+        int itemNum = addNum;
+        int limit = arr.length;
+            if (itemNum > 0 && itemNum <= limit) {
+                return true;
+            }
+
+        return false;
+    }
+
+   /* public int menuItemEnter(int check){
+        int pizzaNum = 0;
+
+        try {
+            while (pizzaNum <= 0 || pizzaNum >= check ){
+                System.out.println("Enter correct item: ");
+                try {
+                    BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
+                    pizzaNum = Integer.parseInt(inPrice.readLine());
+                }catch (NumberFormatException c){}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return String.valueOf(PizzaAdds.values()[addNum - 1]);//
+        return pizzaNum;
+    }*/
 
-    }
 
     public void removeAdd(){
     }
 
     public int getPizzaLimit() {
         return pizzaLimit;
+    }
+
+    public static int getClientNumber() {
+        return clientNumber;
+    }
+
+    public static void setClientNumber(int clientNumber) {
+        OrderService.clientNumber = clientNumber;
     }
 }

@@ -1,8 +1,6 @@
 package utility;
 
 import entity.PizzaItem;
-import enums.PizzaAdds;
-import enums.PizzaType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,13 +22,13 @@ public class OrderMaker {
     }
 
     public void addPizzaBase(int addNum){
-        pizzaItem.setPizzaType(service.addBase(addNum));
-        pizzaItem.setPizzaPrice(service.getPriceBase(addNum));
+        service.addBase(pizzaItem, addNum);
+        //pizzaItem.setPizzaPrice(service.getPriceBase(addNum));
     }
 
     public void addPizzaAdds(int addNum){
-        pizzaItem.setAdds(service.addAdd(addNum));
-        pizzaItem.setPizzaPrice(service.getPriceAdd(addNum));
+        service.addAdd(pizzaItem, addNum);
+        //service.getPriceAdd(pizzaItem,addNum));
     }
 
     public void addPizzaName(String name){
@@ -44,10 +42,10 @@ public class OrderMaker {
 
         if(visitorOrder != null){
             for(PizzaItem item : visitorOrder){
-                System.out.println(item.getPizzaName());
-                System.out.println(item.getPizzaNumber());
-                System.out.println(item.getPizzaPrice());
-                System.out.println(item.getPizzaType());
+                System.out.print("[" + item.getPizzaNumber()+": ");
+                System.out.print(OrderService.getClientNumber() +": ");
+                System.out.print(item.getPizzaPrice()+"€ : ");
+                System.out.println(item.getPizzaType()+" ]");
                 System.out.println("=======================");
 
                 ArrayList arrayList = item.getAdds();

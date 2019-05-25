@@ -8,9 +8,10 @@ import java.io.InputStreamReader;
 
 public class ShowMenu {
 
+    private int itemMenu = 0;
+
     MenuBuilder menu ;
     OrderMaker  orderMaker;
-    double visitorPrice = 0;
 
     public ShowMenu() {
         menu = new MenuBuilder();
@@ -21,8 +22,6 @@ public class ShowMenu {
 
     public void show() {
         do {
-        int pos = 0;
-       // visitorPrice = menu.menuTotalPriceEnter();
         menu.mainManu(); //main text menu
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         //main menu block
@@ -30,7 +29,7 @@ public class ShowMenu {
             switch (Integer.parseInt(in.readLine())) {
                 case 1:
                     orderMaker.createPizza();
-                    //orderMaker.showNumberR();
+                    orderMaker.showOrder();
                     selectBasePizza();
                     break;
                 case 0:
@@ -48,20 +47,19 @@ public class ShowMenu {
     public void selectBasePizza() /*throws IOException*/ {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         boolean notExit = true;
-        int item = 0;
 
         menu.baseShow();
         while(notExit) {
 
             try {
-                switch(item = Integer.parseInt(in.readLine())) {
+                switch(itemMenu = Integer.parseInt(in.readLine())) {
                     case 1:
-                        orderMaker.addPizzaBase(item);
+                        orderMaker.addPizzaBase(itemMenu);
                         orderMaker.showOrder();
                         selectAddsPizza();
                         break;
                     case 2:
-                        orderMaker.addPizzaBase(item);
+                        orderMaker.addPizzaBase(itemMenu);
                         orderMaker.showOrder();
                         selectAddsPizza();
                         break;
@@ -78,29 +76,43 @@ public class ShowMenu {
      public void selectAddsPizza() /*throws IOException*/ {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         boolean notExit = true;
-        int item = 0;
+
         menu.addsShow();
-        while(notExit) {
 
-            try {
-                switch(item = Integer.parseInt(in.readLine())) {
-                   /* case 1:
-                        System.out.println("mnjn");*//*selectAlbum();*//*
-                        break;
-                    case 2: System.out.println("njjn");*//*deleteAlbum()*//*;
-                        break;*/
-                    case 0: notExit = false; break;
-                    default:
-                        orderMaker.addPizzaAdds(item);
-                        orderMaker.showOrder();
-                } // switch
-            }catch (IOException e) {
-                e.printStackTrace();
+         while(notExit) {
+             try {
+                 switch(itemMenu = Integer.parseInt(in.readLine())) {
+                     case 0:
+                         notExit = false;
+                         break;
+                     default:
+                         orderMaker.addPizzaAdds(itemMenu);
+                         orderMaker.showOrder();
+                 }// switch
+             } catch (IOException e){
+                 e.printStackTrace();
+             }
+         } // while
+    } // select
+
+
+    public int pizzaNumbersEnter(){
+        int pizzaNum = 0;
+
+        try {
+            while (pizzaNum <= -1 || pizzaNum >= 11 ){
+                System.out.println("Enter pizza numbers (max-> 10): ");
+                try {
+                    BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
+                    pizzaNum = Integer.parseInt(inPrice.readLine());
+                }catch (NumberFormatException c){}
             }
-        } // while
-    } // selectArtist
-
-    public void selectCountPiz() /*throws IOException*/ {
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pizzaNum;
+    }
+    /*public void selectCountPiz() *//*throws IOException*//* {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             boolean notExit = true;
 
@@ -110,9 +122,9 @@ public class ShowMenu {
                 try {
                     switch(Integer.parseInt(in.readLine())) {
                         case 1:
-                            System.out.println("mnjn");/*selectAlbum();*/
+                            System.out.println("mnjn");*//*selectAlbum();*//*
                             break;
-                        case 2: System.out.println("njjn");/*deleteAlbum()*/;
+                        case 2: System.out.println("njjn");*//*deleteAlbum()*//*;
                             break;
                         case 0: notExit = false; break;
                         default:
@@ -122,7 +134,7 @@ public class ShowMenu {
                     e.printStackTrace();
                 }
             } // while
-        } // selectArtist
+        } // select*/
 
 }
 

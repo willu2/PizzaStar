@@ -52,7 +52,7 @@ public class MenuBuilder {
                         System.out.print("> " + pos + ": " + add + " " + add.getPrice() + "€" );
                     }
                 }
-        System.out.print("> 0: Exit ");
+        System.out.println("> 0: Exit ");
     }
 
     //print price enter text
@@ -65,8 +65,25 @@ public class MenuBuilder {
         int pizzaNum = 0;
 
         try {
-            while (pizzaNum <= 0 || pizzaNum >=11 ){
+            while (pizzaNum <= 0 || pizzaNum >= 11 ){
                 System.out.println("Enter pizza numbers (max-> 10): ");
+                try {
+                    BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
+                    pizzaNum = Integer.parseInt(inPrice.readLine());
+                }catch (NumberFormatException c){}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pizzaNum;
+    }
+
+    public int menuItemEnter(int check){
+        int pizzaNum = 0;
+
+        try {
+            while (pizzaNum <= 0 || pizzaNum >= check ){
+                System.out.println("Enter correct item: ");
                 try {
                     BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
                     pizzaNum = Integer.parseInt(inPrice.readLine());
