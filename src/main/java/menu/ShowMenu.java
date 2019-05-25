@@ -48,9 +48,8 @@ public class ShowMenu {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         boolean notExit = true;
 
-        menu.baseShow();
         while(notExit) {
-
+            menu.baseShow();
             try {
                 switch(itemMenu = Integer.parseInt(in.readLine())) {
                     case 1:
@@ -62,6 +61,15 @@ public class ShowMenu {
                         orderMaker.addPizzaBase(itemMenu);
                         orderMaker.showOrder();
                         selectAddsPizza();
+                        break;
+                    case 3:
+                        pizzaNameEnter();
+                        break;
+                    case 4:
+                        orderMaker.showOrder();
+                        break;
+                    case 5:
+                        orderMaker.showOrder();
                         break;
                     case 0: notExit = false; break;
                     default:
@@ -77,9 +85,8 @@ public class ShowMenu {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         boolean notExit = true;
 
-        menu.addsShow();
-
          while(notExit) {
+             menu.addsShow();
              try {
                  switch(itemMenu = Integer.parseInt(in.readLine())) {
                      case 0:
@@ -111,6 +118,23 @@ public class ShowMenu {
             e.printStackTrace();
         }
         return pizzaNum;
+    }
+
+    public String pizzaNameEnter(){
+        String pizzaName = "";
+        System.out.println("name enter");
+        try {
+            while (pizzaName.length() < 4 || pizzaName.length() >= 20 ){
+                System.out.println("Enter pizza name : ");
+                try {
+                    BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
+                    pizzaName = String.valueOf(inPrice.readLine());
+                }catch (NumberFormatException c){}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pizzaName;
     }
     /*public void selectCountPiz() *//*throws IOException*//* {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

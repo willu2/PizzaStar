@@ -52,7 +52,7 @@ public class MenuBuilder {
                         System.out.print("> " + pos + ": " + add + " " + add.getPrice() + "€" );
                     }
                 }
-        System.out.println("> 0: Exit ");
+        System.out.println("> 0: ^UP ");
     }
 
     //print price enter text

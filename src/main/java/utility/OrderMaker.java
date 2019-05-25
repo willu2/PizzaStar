@@ -19,10 +19,11 @@ public class OrderMaker {
     public void createPizza(){
         pizzaItem = new PizzaItem(service.randOrderN());
         visitorOrder.add(pizzaItem);
+        service.setBaseAccess(true);
     }
 
-    public void addPizzaBase(int addNum){
-        service.addBase(pizzaItem, addNum);
+    public void addPizzaBase(int baseNum){
+        service.addBase(pizzaItem, baseNum);
         //pizzaItem.setPizzaPrice(service.getPriceBase(addNum));
     }
 
@@ -53,13 +54,11 @@ public class OrderMaker {
                     String add = it.next();
                     System.out.println(add);
                 }
-                    //System.out.println((PizzaAdds)adds.);
                 }
             }
         }
 
         public void showNumberR(){
-
             if(visitorOrder != null){
                 for(PizzaItem item : visitorOrder){
                     System.out.println(item.getPizzaNumber());

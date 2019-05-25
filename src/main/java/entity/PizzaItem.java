@@ -42,7 +42,11 @@ public class PizzaItem {
     }
 
     public void  setAdds(String addsq) {
-        adds.add(addsq);
+        if(!adds.contains(addsq)){
+            adds.add(addsq);
+        }else{
+            System.out.println("Can't add twice");
+        }
     }
 
     public PizzaType getPizzaType() {

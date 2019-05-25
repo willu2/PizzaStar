@@ -9,7 +9,8 @@ public class OrderService {
     private static int clientNumber = 50;
 
     private final int pizzaLimit = 10;
-    private boolean base = true;
+
+    private boolean baseAccess = true;
 
 
     PizzaNumberGenerator generator = PizzaNumberGenerator.getInstance();
@@ -21,8 +22,8 @@ public class OrderService {
     public void addBase(PizzaItem item, int baseNum){
 
         if (checkBaseLimit(baseNum)) {
-            if(base){
-                base = !base;
+            if(baseAccess){
+                baseAccess = !baseAccess;
                 item.setPizzaType(PizzaType.values()[baseNum - 1]);
                 item.setPizzaPrice(PizzaType.values()[baseNum - 1].getPrice());
             }else {
@@ -31,19 +32,10 @@ public class OrderService {
         }
     }
 
-    public double getPriceBase(int baseNum){
-        PizzaType arr[] = PizzaType.values();
-
-        return PizzaType.values()[baseNum - 1].getPrice();
-    }
-/*
-    public double getPriceAdd (PizzaItem item, int addNum){
-        PizzaAdds arr[] = PizzaAdds.values();
-        return PizzaAdds.values()[1].getPrice();
-    }
-*/
     public void addAdd(PizzaItem item, int addNum){
-
+        if (addNum == 0) {
+            return;
+        }
             if (checkInpLimit(addNum) ) {
                 item.setAdds(String.valueOf(PizzaAdds.values()[addNum - 1]));
                 item.setPizzaPrice(PizzaAdds.values()[addNum - 1].getPrice());
@@ -68,9 +60,9 @@ public class OrderService {
             if (itemNum > 0 && itemNum <= limit) {
                 return true;
             }
-
         return false;
     }
+
 
    /* public int menuItemEnter(int check){
         int pizzaNum = 0;
@@ -89,7 +81,6 @@ public class OrderService {
         return pizzaNum;
     }*/
 
-
     public void removeAdd(){
     }
 
@@ -103,5 +94,9 @@ public class OrderService {
 
     public static void setClientNumber(int clientNumber) {
         OrderService.clientNumber = clientNumber;
+    }
+
+    public void setBaseAccess(boolean baseAccess) {
+        this.baseAccess = baseAccess;
     }
 }
