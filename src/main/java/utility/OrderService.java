@@ -7,10 +7,12 @@ import enums.PizzaType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class OrderService {
 
-    public int clientNumber = 50;
+    public int clientNumBase = 0;
 
     private final int pizzaLimit = 10;
 
@@ -19,7 +21,7 @@ public class OrderService {
     PizzaNumberGenerator generator = PizzaNumberGenerator.getInstance();
 
     public int randOrderN(){
-            setClientNumber(getClientNumber()+1);
+            setClientNumBase(getClientNumBase()+1);
             return generator.getPizzaNumber();
     }
 
@@ -28,8 +30,9 @@ public class OrderService {
         if (checkBaseLimit(baseNum)) {
             if(baseAccess){
                 baseAccess = !baseAccess;
-                item.setClientNumber(getClientNumber());
+
                 item.setPizzaType(PizzaType.values()[baseNum - 1]);
+                item.setPriceAcces(true);
                 item.setPizzaPrice(PizzaType.values()[baseNum - 1].getPrice());
             }else {
                 System.out.println("Base is added");
@@ -42,7 +45,7 @@ public class OrderService {
             return;
         }
             if (checkInpLimit(addNum) ) {
-                item.setAdds(String.valueOf(PizzaAdds.values()[addNum - 1]));
+                item.addIngredient(String.valueOf(PizzaAdds.values()[addNum - 1]));
                 item.setPizzaPrice(PizzaAdds.values()[addNum - 1].getPrice());
             }
     }
@@ -54,7 +57,6 @@ public class OrderService {
             if (itemNum > 0 && itemNum <= limit) {
                 return true;
             }
-
         return false;
     }
 
@@ -76,7 +78,7 @@ public class OrderService {
             pizzaName = String.valueOf(inPrice.readLine());
 
             if(pizzaName.length() < 4 || pizzaName.length() >= 20 ){
-                pizzaName = "client_num_" + item.getPizzaNumber();
+                pizzaName = "client_num_" + item.getClientNumber();
             }
 
         }catch (IOException e) {
@@ -85,30 +87,17 @@ public class OrderService {
         return pizzaName;
     }
 
-    public int getClientNumber() {
-        return clientNumber;
+    public int getClientNumBase() {
+        return clientNumBase;
     }
 
-    public void setClientNumber(int number) {
-        clientNumber = number;
+    public void setClientNumBase(int number) {
+        clientNumBase = number;
     }
 
-   /* public int menuItemEnter(int check){
-        int pizzaNum = 0;
-
-        try {
-            while (pizzaNum <= 0 || pizzaNum >= check ){
-                System.out.println("Enter correct item: ");
-                try {
-                    BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
-                    pizzaNum = Integer.parseInt(inPrice.readLine());
-                }catch (NumberFormatException c){}
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return pizzaNum;
-    }*/
+    public void setClientNum(PizzaItem item) {
+        item.setClientNumber(getClientNumBase());
+    }
 
     public void removeAdd(){
     }
@@ -117,7 +106,55 @@ public class OrderService {
         return pizzaLimit;
     }
 
+    //check int input menu
+    public void pizzaNumbersEnter(PizzaItem item){
+        int pizzaNum = 0;
 
+        try {
+            while (pizzaNum <= 0 || pizzaNum >= getPizzaLimit() ){
+                System.out.println("Enter pizza numbers (max-> 10): ");
+                try {
+                    BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
+                    pizzaNum = Integer.parseInt(inPrice.readLine());
+                }catch (NumberFormatException c){}
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        item.setPizzaItemsCount(pizzaNum);
+    }
+
+    public void showOrder(PizzaItem item){
+
+        System.out.printf("%n%33s%5d%2s", "[", item.getPizzaNumber(), " : ");
+        System.out.print(item.getClientNumber() + " : ");
+        System.out.printf("%-4.2f%s", item.getPizzaPrice(), "€ : ");
+        System.out.print(item.getPizzaType() + " : ");
+        System.out.print(item.getPizzaName() + " : ");
+        System.out.println(item.getPizzaItemsCount() + " ]");
+        System.out.printf("%32s%s%n","","==================================================");
+
+        showAdds(item);
+
+       /* System.out.printf("%-5s%-11s%-25s%-11s%n","Код","За единиц","Валюты","Рублей РФ");
+        System.out.printf("%-5s%-11d%-25s%-11.4f%n","KZT", 100, "Казахский тенге",31.4654);*/
+    }
+
+    public void showAdds(PizzaItem item){
+        int num = 1;
+        ArrayList arrayList = item.getAdds();
+        System.out.print("");
+        for (Iterator<String> it = arrayList.iterator(); it.hasNext(); ) {
+            String add = it.next();
+            System.out.printf("%32s%d%1s%s%n","", num++,"" ,add );
+        }
+    }
+
+
+    public void showEmtyInfo(){
+        System.out.println("Your order is empty");
+        System.out.println("===================");
+    }
 
     public void setBaseAccess(boolean baseAccess) {
         this.baseAccess = baseAccess;
