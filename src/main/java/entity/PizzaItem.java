@@ -9,8 +9,8 @@ public class PizzaItem {
     private PizzaType pizzaType;
     private ArrayList<String> adds;
     private String pizzaName = "temp";
-
     private double pizzaPrice = 0;
+    private int clientNumber = 0;
 
     public PizzaItem(int pizzaNumber) {
         this.pizzaNumber = pizzaNumber;
@@ -55,5 +55,13 @@ public class PizzaItem {
 
     public void setPizzaType(PizzaType pizzaType) {
         this.pizzaType = pizzaType;
+    }
+
+    public int getClientNumber() {
+        return clientNumber;
+    }
+
+    public void setClientNumber(int number) {
+        clientNumber = number;
     }
 }

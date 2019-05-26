@@ -16,6 +16,7 @@ public class MenuBuilder {
     public void mainManu(){
         System.out.println("Main menu :> ");
         System.out.println(" 1 :> Make pizza order ");
+        System.out.println(" 2 :> Show all order ");
         System.out.println(" 0 :> Exit ");
 
         System.out.println("Please select menu item :> ");
@@ -35,7 +36,7 @@ public class MenuBuilder {
                 System.out.print("> " + pos + ": " + add + " " + add.getPrice() + "€" );
             }
         }
-        System.out.println("> 0: Exit ");
+        System.out.println("> 0: ^UP ");
     }
 
     //print pizza adds menu

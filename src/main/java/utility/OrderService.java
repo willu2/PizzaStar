@@ -4,18 +4,22 @@ import entity.PizzaItem;
 import enums.PizzaAdds;
 import enums.PizzaType;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class OrderService {
 
-    private static int clientNumber = 50;
+    public int clientNumber = 50;
 
     private final int pizzaLimit = 10;
 
     private boolean baseAccess = true;
 
-
     PizzaNumberGenerator generator = PizzaNumberGenerator.getInstance();
 
     public int randOrderN(){
+            setClientNumber(getClientNumber()+1);
             return generator.getPizzaNumber();
     }
 
@@ -24,6 +28,7 @@ public class OrderService {
         if (checkBaseLimit(baseNum)) {
             if(baseAccess){
                 baseAccess = !baseAccess;
+                item.setClientNumber(getClientNumber());
                 item.setPizzaType(PizzaType.values()[baseNum - 1]);
                 item.setPizzaPrice(PizzaType.values()[baseNum - 1].getPrice());
             }else {
@@ -63,6 +68,30 @@ public class OrderService {
         return false;
     }
 
+    public String pizzaNameEnter(PizzaItem item){
+        String pizzaName = "";
+        System.out.println("Enter pizza name : ");
+        try {
+            BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
+            pizzaName = String.valueOf(inPrice.readLine());
+
+            if(pizzaName.length() < 4 || pizzaName.length() >= 20 ){
+                pizzaName = "client_num_" + item.getPizzaNumber();
+            }
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pizzaName;
+    }
+
+    public int getClientNumber() {
+        return clientNumber;
+    }
+
+    public void setClientNumber(int number) {
+        clientNumber = number;
+    }
 
    /* public int menuItemEnter(int check){
         int pizzaNum = 0;
@@ -88,13 +117,7 @@ public class OrderService {
         return pizzaLimit;
     }
 
-    public static int getClientNumber() {
-        return clientNumber;
-    }
 
-    public static void setClientNumber(int clientNumber) {
-        OrderService.clientNumber = clientNumber;
-    }
 
     public void setBaseAccess(boolean baseAccess) {
         this.baseAccess = baseAccess;

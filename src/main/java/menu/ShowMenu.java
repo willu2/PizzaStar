@@ -30,7 +30,14 @@ public class ShowMenu {
                 case 1:
                     orderMaker.createPizza();
                     orderMaker.showOrder();
+                    orderMaker.addPizzaName();
                     selectBasePizza();
+                    break;
+                case 2:
+                    orderMaker.showOrder();
+                    break;
+                case 3:
+                   // orderMaker.addPizzaName();
                     break;
                 case 0:
                     exit = true;
@@ -39,12 +46,20 @@ public class ShowMenu {
                     System.out.println("Try again...");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error: " + e);
+        } catch (NumberFormatException e) {
+            System.out.println("You entered an invalid operation");
+            continue;   // go to beginning of loop
         }
+
     }while (!exit);
 }
 
     public void selectBasePizza() /*throws IOException*/ {
+
+        String pizzaName = "";//pizzaNameEnter();
+
+
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         boolean notExit = true;
 
@@ -63,7 +78,7 @@ public class ShowMenu {
                         selectAddsPizza();
                         break;
                     case 3:
-                        pizzaNameEnter();
+                       // pizzaNameEnter();
                         break;
                     case 4:
                         orderMaker.showOrder();
@@ -75,8 +90,11 @@ public class ShowMenu {
                     default:
                         System.out.println("Try again...");
                 } // switch
-            }catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException e) {
+                System.err.println("Error: " + e);
+            } catch (NumberFormatException e) {
+                System.out.println("You entered an invalid operation");
+                continue;   // go to beginning of loop
             }
         } // while
     } // selectArtist
@@ -97,7 +115,11 @@ public class ShowMenu {
                          orderMaker.showOrder();
                  }// switch
              } catch (IOException e){
-                 e.printStackTrace();
+                 System.err.println("Error: " + e);
+                 continue;   // go to beginning of loop
+             }catch (NumberFormatException e) {
+                 System.out.println("You entered an invalid operation/");
+                 continue;   // go to beginning of loop
              }
          } // while
     } // select
@@ -120,22 +142,7 @@ public class ShowMenu {
         return pizzaNum;
     }
 
-    public String pizzaNameEnter(){
-        String pizzaName = "";
-        System.out.println("name enter");
-        try {
-            while (pizzaName.length() < 4 || pizzaName.length() >= 20 ){
-                System.out.println("Enter pizza name : ");
-                try {
-                    BufferedReader inPrice = new BufferedReader(new InputStreamReader(System.in));
-                    pizzaName = String.valueOf(inPrice.readLine());
-                }catch (NumberFormatException c){}
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return pizzaName;
-    }
+
     /*public void selectCountPiz() *//*throws IOException*//* {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             boolean notExit = true;
