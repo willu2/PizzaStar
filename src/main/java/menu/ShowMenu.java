@@ -37,7 +37,14 @@ public class ShowMenu {
                     orderMaker.showOrder();
                     break;
                 case 3:
-                   // System.out.println("refactor ingridient");
+                    System.out.println("Margarita");
+                    orderMaker.autoPizza1();
+                    orderMaker.showOrder();
+                    break;
+                case 4:
+                    System.out.println("Bavarian");
+                    orderMaker.autoPizza2();
+                    orderMaker.showOrder();
                     break;
                 case 0:
                     exit = true;
@@ -70,22 +77,18 @@ public class ShowMenu {
                         orderMaker.addPizzaBase(itemMenu);
                         orderMaker.showOrder();
                         orderMaker.pizzaNumbersEnter();
+                        orderMaker.showOrder();
                         selectAddsPizza();
                         break;
                     case 2:
                         orderMaker.addPizzaBase(itemMenu);
                         orderMaker.showOrder();
                         orderMaker.pizzaNumbersEnter();
+                        orderMaker.showOrder();
                         selectAddsPizza();
                         break;
                     case 3:
 
-                        break;
-                    case 4:
-                       // orderMaker.showOrder();
-                        break;
-                    case 5:
-                       // orderMaker.showOrder();
                         break;
                     case 0: notExit = false; break;
                     default:
@@ -112,7 +115,9 @@ public class ShowMenu {
                              notExit = false;
                              break;
                          case 11:
-                             System.out.println("change ingrid");
+                             System.out.println("Change ingridients:");
+                             orderMaker.removeAdd();
+                             orderMaker.showOrder();
                              break;
                          default:
                              orderMaker.addPizzaAdds(itemMenu);

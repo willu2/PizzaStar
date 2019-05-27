@@ -12,7 +12,8 @@ public class MenuBuilder {
         System.out.println("Main menu :> ");
         System.out.println(" 1 :> Make pizza order ");
         System.out.println(" 2 :> Show all order ");
-       // System.out.println(" 3 :> Change ingridients ");
+        System.out.println(" 3 :> Pizza Margarita ");
+        System.out.println(" 4 :> Pizza Bavarian ");
         System.out.println(" 0 :> Exit ");
 
         System.out.println("Please select menu item :> ");
