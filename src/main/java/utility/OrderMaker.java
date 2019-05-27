@@ -40,6 +40,7 @@ public class OrderMaker {
             if(visitorOrder != null || visitorOrder.size() != 0 ){
                 for(PizzaItem item : visitorOrder){
                     service.showOrder(item);
+                   // service.findEnumData(item);
                 }
             }else {
                 service.showEmtyInfo();

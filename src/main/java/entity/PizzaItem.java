@@ -12,9 +12,11 @@ public class PizzaItem {
 
     private double pizzaPrice = 0.0;
 
-    private int clientNumber = 0;
-    private int pizzaItemsCount = 1;
+    private double currentIngridPrice = 0.0;
 
+    private int clientNumber = 0;
+
+    private int pizzaItemsCount = 1;
     private boolean priceAcces = false;
 
     public PizzaItem(int pizzaNumber) {
@@ -41,6 +43,7 @@ public class PizzaItem {
     public void setPizzaPrice(double pizzaPrice) {
         if(isPriceAcces()){
             this.pizzaPrice += pizzaPrice;
+            this.currentIngridPrice = pizzaPrice;
         }
     }
 
@@ -88,5 +91,13 @@ public class PizzaItem {
 
     public void setPriceAcces(boolean priceAcces) {
         this.priceAcces = priceAcces;
+    }
+
+    public double getCurrentIngridPrice() {
+        return currentIngridPrice;
+    }
+
+    public void setCurrentIngridPrice(double currentIngridPrice) {
+        this.currentIngridPrice = currentIngridPrice;
     }
 }

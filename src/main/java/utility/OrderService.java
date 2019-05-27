@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class OrderService {
 
@@ -24,7 +25,6 @@ public class OrderService {
             setClientNumBase(getClientNumBase()+1);
             return generator.getPizzaNumber();
     }
-
     public void addBase(PizzaItem item, int baseNum){
 
         if (checkBaseLimit(baseNum)) {
@@ -53,7 +53,7 @@ public class OrderService {
     public boolean checkInpLimit(int addNum){
         PizzaAdds arr[] = PizzaAdds.values();
         int itemNum = addNum;
-        int limit = arr.length;
+        int limit = PizzaAdds.values().length;
             if (itemNum > 0 && itemNum <= limit) {
                 return true;
             }
@@ -61,9 +61,8 @@ public class OrderService {
     }
 
     public boolean checkBaseLimit(int addNum){
-        PizzaType arr[] = PizzaType.values();
         int itemNum = addNum;
-        int limit = arr.length;
+        int limit = PizzaType.values().length;
             if (itemNum > 0 && itemNum <= limit) {
                 return true;
             }
@@ -107,6 +106,7 @@ public class OrderService {
     }
 
     //check int input menu
+
     public void pizzaNumbersEnter(PizzaItem item){
         int pizzaNum = 0;
 
@@ -123,7 +123,6 @@ public class OrderService {
         }
         item.setPizzaItemsCount(pizzaNum);
     }
-
     public void showOrder(PizzaItem item){
 
         System.out.printf("%n%33s%5d%2s", "[", item.getPizzaNumber(), " : ");
@@ -142,13 +141,20 @@ public class OrderService {
 
     public void showAdds(PizzaItem item){
         int num = 1;
+        double price = 0;
         ArrayList arrayList = item.getAdds();
         System.out.print("");
         for (Iterator<String> it = arrayList.iterator(); it.hasNext(); ) {
             String add = it.next();
-            System.out.printf("%32s%d%1s%s%n","", num++,"" ,add );
+            price = findEnumData(add);
+            System.out.printf("%32s%d%2s%-20s%8s%4.2f%n", "", num++,"" ,add, "", price );
         }
     }
+
+    public double findEnumData(String add){
+            int index = PizzaAdds.valueOf(add.toUpperCase()).ordinal();
+            return PizzaAdds.values()[index].getPrice();
+     }
 
 
     public void showEmtyInfo(){
