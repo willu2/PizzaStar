@@ -14,6 +14,10 @@ public class MenuBuilder {
         System.out.println(" 2 :> Show all order ");
         System.out.println(" 3 :> Pizza Margarita ");
         System.out.println(" 4 :> Pizza Bavarian ");
+        System.out.println(" 5 :> 7717 <client");
+        System.out.println(" 6 :> 4372 <client");
+
+
         System.out.println(" 0 :> Exit ");
 
         System.out.println("Please select menu item :> ");

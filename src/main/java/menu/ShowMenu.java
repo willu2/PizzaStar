@@ -1,5 +1,6 @@
 package menu;
 
+import utility.OrderAutoBuild;
 import utility.OrderMaker;
 
 import java.io.BufferedReader;
@@ -12,10 +13,12 @@ public class ShowMenu {
 
     MenuBuilder menu ;
     OrderMaker  orderMaker;
+    OrderAutoBuild autoBuild;
 
     public ShowMenu() {
         menu = new MenuBuilder();
         orderMaker = new OrderMaker();
+        autoBuild = new OrderAutoBuild();
     }
 
     boolean exit = false;
@@ -44,6 +47,16 @@ public class ShowMenu {
                 case 4:
                     System.out.println("Bavarian");
                     orderMaker.autoPizza2();
+                    orderMaker.showOrder();
+                    break;
+                case 5:
+                    System.out.println("7717");
+                    orderMaker.autoPizza7717();
+                    orderMaker.showOrder();
+                    break;
+                case 6:
+                    System.out.println("4372");
+                    orderMaker.autoPizza4372();
                     orderMaker.showOrder();
                     break;
                 case 0:
