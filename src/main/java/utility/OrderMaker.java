@@ -44,7 +44,12 @@ public class OrderMaker {
 
         if (visitorOrder != null || visitorOrder.size() != 0) {
             for (PizzaItem item : visitorOrder) {
-                service.showOrder(item);
+              //  service.showOrder(item);
+
+              //  System.out.println("         ------");
+               // System.out.println("         ------");
+
+                service.showOrderNewType(item);
                 // service.findEnumData(item);
             }
         } else {

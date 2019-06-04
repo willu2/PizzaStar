@@ -100,4 +100,16 @@ public class PizzaItem {
     public void setCurrentIngridPrice(double currentIngridPrice) {
         this.currentIngridPrice = currentIngridPrice;
     }
+
+    @Override
+    public String toString() {
+        return "PizzaItem [pizzaNumber=" + pizzaNumber
+                + ", pizzaType=" + pizzaType
+                + ", pizzaName=" + pizzaName
+                + ", pizzaPrice=" + pizzaPrice
+                + ", ingridPrice=" + currentIngridPrice
+                + ", clientNumber=" + clientNumber
+                + ", pizzaItemsCount=" + pizzaItemsCount
+                + "]";
+    }
 }

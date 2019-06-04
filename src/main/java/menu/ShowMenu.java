@@ -32,7 +32,7 @@ public class ShowMenu {
             switch (Integer.parseInt(in.readLine())) {
                 case 1:
                     orderMaker.createPizza();
-                    orderMaker.showOrder();
+                    //orderMaker.showOrder();
                     orderMaker.addPizzaName();
                     selectBasePizza();
                     break;

@@ -138,8 +138,30 @@ public class OrderService {
         if(checkFullPizza(item)){
             System.out.printf("%32s%s", "", "Pizza is full.");
         }
-       /* System.out.printf("%-5s%-11s%-25s%-11s%n","Код","За единиц","Валюты","Рублей РФ");
-        System.out.printf("%-5s%-11d%-25s%-11.4f%n","KZT", 100, "Казахский тенге",31.4654);*/
+    }
+
+    public void showOrderNewType(PizzaItem item) {
+
+        System.out.printf("%n%32s", "");
+        System.out.println(String.format("%40s", "").replace(' ', '*'));
+        System.out.printf("%39s%5d", "Zakaz: ", item.getPizzaNumber() );
+        System.out.printf("%n%40s%4d", "Client: ",item.getClientNumber() );
+        System.out.printf("%n%38s%5s", "Name: ",item.getPizzaName() );
+        System.out.printf("%n%32s", "");
+        System.out.println(String.format("%40s", "").replace(' ', '-'));
+        System.out.printf("%32s%s%s%18.2f%s%n"," " ,"Pizza Base : ", item.getPizzaType(), item.getPizzaType().getPrice() ," €");
+
+        showAdds(item);
+
+        System.out.printf("%32s%s%32.2f%s", "", "Total:", item.getPizzaPrice(), " €");
+        System.out.printf("%n%32s%s%34d", "", "Count:", item.getPizzaItemsCount() );
+        //System.out.printf("%32s%s%n", "", "===============");
+
+
+
+        if(checkFullPizza(item)){
+            System.out.printf("%32s%s", "", "Pizza is full.");
+        }
     }
 
     public void showAdds(PizzaItem item) {
@@ -150,9 +172,10 @@ public class OrderService {
         for (Iterator<String> it = arrayList.iterator(); it.hasNext(); ) {
             String add = it.next();
             price = findEnumData(add);
-            System.out.printf("%32s%d%2s%-20s%8s%4.2f%n", "", num++, "", add, "", price);
+            System.out.printf("%32s%d%2s%-20s%11s%4.2f%s%n", "", num++, "", add, "", price, " €");
         }
-        System.out.printf("%32s%s%n", "", "________________________________________________");
+        System.out.printf("%32s", "");
+        System.out.println(String.format("%40s", "").replace(' ', '-'));
     }
 
     public void removeAdd(PizzaItem item) {
