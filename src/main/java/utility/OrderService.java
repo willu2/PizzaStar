@@ -142,7 +142,11 @@ public class OrderService {
 
     public void showOrderNewType(PizzaItem item) {
 
-        System.out.printf("%n%32s", "");
+        System.out.printf("%n%n%32s", "");
+        System.out.println(String.format("%40s", "").replace(' ', '*'));
+        System.out.printf("%32s", "");
+        System.out.println("Time: " + item.getTime() );
+        System.out.printf("%32s", "");
         System.out.println(String.format("%40s", "").replace(' ', '*'));
         System.out.printf("%39s%5d", "Zakaz: ", item.getPizzaNumber() );
         System.out.printf("%n%40s%4d", "Client: ",item.getClientNumber() );
@@ -155,6 +159,7 @@ public class OrderService {
 
         System.out.printf("%32s%s%32.2f%s", "", "Total:", item.getPizzaPrice(), " €");
         System.out.printf("%n%32s%s%34d", "", "Count:", item.getPizzaItemsCount() );
+
         //System.out.printf("%32s%s%n", "", "===============");
 
 

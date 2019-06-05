@@ -8,15 +8,15 @@ public class PizzaItem {
 
     private PizzaType pizzaType;
     private ArrayList<String> adds;
-    private String pizzaName = "Wait...";
+    private String pizzaName = "No name";
+    private String timeCreate;
 
     private double pizzaPrice = 0.0;
-
     private double currentIngridPrice = 0.0;
 
     private int clientNumber = 0;
-
     private int pizzaItemsCount = 1;
+
     private boolean priceAcces = false;
 
     public PizzaItem(int pizzaNumber) {
@@ -93,12 +93,12 @@ public class PizzaItem {
         this.priceAcces = priceAcces;
     }
 
-    public double getCurrentIngridPrice() {
-        return currentIngridPrice;
+    public String getTime() {
+        return timeCreate;
     }
 
-    public void setCurrentIngridPrice(double currentIngridPrice) {
-        this.currentIngridPrice = currentIngridPrice;
+    public void setTimeCreate(String timeCreate) {
+        this.timeCreate = timeCreate;
     }
 
     @Override

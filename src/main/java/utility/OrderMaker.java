@@ -3,8 +3,9 @@ package utility;
 import entity.PizzaItem;
 import enums.PizzaType;
 
-import java.time.LocalTime;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OrderMaker {
@@ -14,7 +15,7 @@ public class OrderMaker {
 
     private PizzaItem pizzaItem;
 
-    private LocalTime time;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy 'at' HH:mm:ss");
 
     public OrderMaker() {
         visitorOrder = new ArrayList<PizzaItem>();
@@ -22,6 +23,8 @@ public class OrderMaker {
 
     public void createPizza() {
         pizzaItem = new PizzaItem(service.randOrderN());
+        pizzaItem.setTimeCreate(dateFormat.format( new Date() ));
+
         visitorOrder.add(pizzaItem);
         service.setClientNum(pizzaItem);
         service.setBaseAccess(true);
@@ -45,12 +48,7 @@ public class OrderMaker {
         if (visitorOrder != null || visitorOrder.size() != 0) {
             for (PizzaItem item : visitorOrder) {
               //  service.showOrder(item);
-
-              //  System.out.println("         ------");
-               // System.out.println("         ------");
-
                 service.showOrderNewType(item);
-                // service.findEnumData(item);
             }
         } else {
             service.showEmtyInfo();
@@ -66,8 +64,6 @@ public class OrderMaker {
         service.pizzaNumbersEnter(pizzaItem);
     }
 
-
-    ///==========================
 
     public void autoPizza1() {
         createPizza();

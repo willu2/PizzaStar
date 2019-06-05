@@ -50,7 +50,6 @@ public class ShowMenu {
                     orderMaker.showOrder();
                     break;
                 case 5:
-                    System.out.println("7717");
                     orderMaker.autoPizza7717();
                     orderMaker.showOrder();
                     break;
@@ -100,10 +99,8 @@ public class ShowMenu {
                         orderMaker.showOrder();
                         selectAddsPizza();
                         break;
-                    case 3:
-
+                    case 0: notExit = false;
                         break;
-                    case 0: notExit = false; break;
                     default:
                         System.out.println("Try again...");
                 } // switch

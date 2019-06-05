@@ -1,7 +1,6 @@
 package utility;
 
 import entity.PizzaItem;
-import enums.PizzaType;
 
 public class OrderAutoBuild {
 
@@ -10,6 +9,5 @@ public class OrderAutoBuild {
 
     public OrderAutoBuild() {
         orderMaker = new OrderMaker();
-
     }
 }
